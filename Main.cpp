@@ -62,14 +62,7 @@ int main() {
     return 0;
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------------------------------
-#include "Menu.cpp"
 
-int main() {
-    Menu menu;
-    menu.showMenu();
-    return 0;
-}
 //-----------------------------------------------------------------------------------------------------------------------------
 #include <iostream>
 #include "Graph.h"
@@ -93,5 +86,57 @@ int main() {
         std::cout << friendName << std::endl;
     }
 
+    return 0;
+}
+//_______________________________________________________________________________________________________________________________________________
+#include <iostream>
+#include "RecommendationSystem.h"
+
+int main() {
+    RecommendationSystem rs;
+
+    // Agregar usuarios
+    rs.addUser("Alice");
+    rs.addUser("Bob");
+    rs.addUser("Charlie");
+    rs.addUser("David");
+
+    // Agregar intereses
+    rs.addUser("Alice");
+    rs.addContent("Music", "Song A");
+    rs.addContent("Music", "Song B");
+    rs.addContent("Movies", "Movie X");
+
+    rs.addUser("Bob");
+    rs.addInterest("Bob", "Music");
+    rs.addInterest("Bob", "Movies");
+
+    rs.addUser("Charlie");
+    rs.addInterest("Charlie", "Books");
+
+    rs.addUser("David");
+    rs.addInterest("David", "Music");
+
+    // Crear conexiones de amistad
+    rs.addFriend("Alice", "Bob");
+    rs.addFriend("Bob", "Charlie");
+    rs.addFriend("Alice", "David");
+
+    // Obtener recomendaciones para Alice
+    std::vector<std::string> recommendations = rs.recommendContent("Alice");
+
+    std::cout << "Recomendaciones para Alice:" << std::endl;
+    for (const auto& content : recommendations) {
+        std::cout << "- " << content << std::endl;
+    }
+
+    return 0;
+}
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+#include "Menu.cpp"
+
+int main() {
+    Menu menu;
+    menu.showMenu();
     return 0;
 }
