@@ -1,6 +1,6 @@
 #include "UserManager.h"
 
-void UserManager::addUser(const std::string& username) {
+void UserManager::añadirUsuario(const std::string& username) {
     if (userInterests.find(username) == userInterests.end()) {
         userInterests[username] = {};
     }
