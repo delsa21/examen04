@@ -1,55 +1,54 @@
 #include <iostream>
 #include "ContentManager.h"
+#include "UserManager.h"
+#include "Graph.h"
+#include "RecommendationSystem.h"
+#include "Menu.h"
 
 int main() {
-    ContentManager manager;
+    // ------------------ ContentManager ------------------
+    ContentManager contentManager;
 
     // Agregar contenidos
-    manager.addContent("Noticias", "Últimas noticias sobre tecnología");
-    manager.addContent("Noticias", "El cambio climático es una amenaza global");
-    manager.addContent("Entretenimiento", "Películas más esperadas de 2024");
+    contentManager.addContent("Noticias", "Últimas noticias sobre tecnología");
+    contentManager.addContent("Noticias", "El cambio climático es una amenaza global");
+    contentManager.addContent("Entretenimiento", "Películas más esperadas de 2024");
 
     // Obtener contenidos por categoría
-    std::vector<std::string> noticias = manager.getContentByCategory("Noticias");
+    std::vector<std::string> noticias = contentManager.getContentByCategory("Noticias");
     std::cout << "Contenido en la categoría 'Noticias':" << std::endl;
     for (const auto& content : noticias) {
         std::cout << "- " << content << std::endl;
     }
 
-    std::vector<std::string> entretenimiento = manager.getContentByCategory("Entretenimiento");
+    std::vector<std::string> entretenimiento = contentManager.getContentByCategory("Entretenimiento");
     std::cout << "\nContenido en la categoría 'Entretenimiento':" << std::endl;
     for (const auto& content : entretenimiento) {
         std::cout << "- " << content << std::endl;
     }
 
-    return 0;
-}
-//--------------------------------------------------------------------------------------------------------------------
-#include "UserManager.h"
-#include <iostream>
-
-int main() {
-    UserManager um;
+    // ------------------ UserManager ------------------
+    UserManager userManager;
 
     // Agregar usuarios
-    um.addUser("alice");
-    um.addUser("bob");
+    userManager.addUser("alice");
+    userManager.addUser("bob");
 
     // Agregar intereses
-    um.addInterest("alice", "movies");
-    um.addInterest("alice", "music");
-    um.addInterest("bob", "sports");
+    userManager.addInterest("alice", "movies");
+    userManager.addInterest("alice", "music");
+    userManager.addInterest("bob", "sports");
 
     // Obtener intereses
     try {
-        auto aliceInterests = um.getInterests("alice");
-        std::cout << "Intereses de Alice: ";
+        auto aliceInterests = userManager.getInterests("alice");
+        std::cout << "\nIntereses de Alice: ";
         for (const auto& interest : aliceInterests) {
             std::cout << interest << " ";
         }
         std::cout << std::endl;
 
-        auto bobInterests = um.getInterests("bob");
+        auto bobInterests = userManager.getInterests("bob");
         std::cout << "Intereses de Bob: ";
         for (const auto& interest : bobInterests) {
             std::cout << interest << " ";
@@ -59,15 +58,7 @@ int main() {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 
-    return 0;
-}
-
-
-//-----------------------------------------------------------------------------------------------------------------------------
-#include <iostream>
-#include "Graph.h"
-//Graph
-int main() {
+    // ------------------ Graph ------------------
     Graph graph;
 
     // Agregar relaciones de amistad
@@ -81,62 +72,47 @@ int main() {
     std::unordered_set<std::string> friends = graph.bfs("Alice");
 
     // Imprimir los amigos directos e indirectos de Alice
-    std::cout << "Amigos de Alice:" << std::endl;
+    std::cout << "\nAmigos de Alice:" << std::endl;
     for (const auto& friendName : friends) {
         std::cout << friendName << std::endl;
     }
 
-    return 0;
-}
-//_______________________________________________________________________________________________________________________________________________
-#include <iostream>
-#include "RecommendationSystem.h"
+    // ------------------ RecommendationSystem ------------------
+    RecommendationSystem recommendationSystem;
 
-int main() {
-    RecommendationSystem rs;
+    // Agregar usuarios y contenidos
+    recommendationSystem.addUser("Alice");
+    recommendationSystem.addContent("Music", "Song A");
+    recommendationSystem.addContent("Music", "Song B");
+    recommendationSystem.addContent("Movies", "Movie X");
 
-    // Agregar usuarios
-    rs.addUser("Alice");
-    rs.addUser("Bob");
-    rs.addUser("Charlie");
-    rs.addUser("David");
+    recommendationSystem.addUser("Bob");
+    recommendationSystem.addInterest("Bob", "Music");
+    recommendationSystem.addInterest("Bob", "Movies");
 
-    // Agregar intereses
-    rs.addUser("Alice");
-    rs.addContent("Music", "Song A");
-    rs.addContent("Music", "Song B");
-    rs.addContent("Movies", "Movie X");
+    recommendationSystem.addUser("Charlie");
+    recommendationSystem.addInterest("Charlie", "Books");
 
-    rs.addUser("Bob");
-    rs.addInterest("Bob", "Music");
-    rs.addInterest("Bob", "Movies");
-
-    rs.addUser("Charlie");
-    rs.addInterest("Charlie", "Books");
-
-    rs.addUser("David");
-    rs.addInterest("David", "Music");
+    recommendationSystem.addUser("David");
+    recommendationSystem.addInterest("David", "Music");
 
     // Crear conexiones de amistad
-    rs.addFriend("Alice", "Bob");
-    rs.addFriend("Bob", "Charlie");
-    rs.addFriend("Alice", "David");
+    recommendationSystem.addFriend("Alice", "Bob");
+    recommendationSystem.addFriend("Bob", "Charlie");
+    recommendationSystem.addFriend("Alice", "David");
 
     // Obtener recomendaciones para Alice
-    std::vector<std::string> recommendations = rs.recommendContent("Alice");
+    std::vector<std::string> recommendations = recommendationSystem.recommendContent("Alice");
 
-    std::cout << "Recomendaciones para Alice:" << std::endl;
+    std::cout << "\nRecomendaciones para Alice:" << std::endl;
     for (const auto& content : recommendations) {
         std::cout << "- " << content << std::endl;
     }
 
-    return 0;
-}
-//-----------------------------------------------------------------------------------------------------------------------------------------------------
-#include "Menu.cpp"
-
-int main() {
+    // ------------------ Menu ------------------
     Menu menu;
+    std::cout << "\nMostrando el menú principal:" << std::endl;
     menu.showMenu();
+
     return 0;
 }
