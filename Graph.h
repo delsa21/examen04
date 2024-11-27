@@ -2,21 +2,17 @@
 #define GRAPH_H
 
 #include <unordered_map>
-#include <unordered_set>
-#include <vector>
-#include <queue>
+#include <set>
 #include <string>
+#include <queue>
 
 class Graph {
-private:
-    std::unordered_map<std::string, std::vector<std::string>> adjList;
-
 public:
-    // Agregar una conexión entre dos usuarios
     void addEdge(const std::string& user1, const std::string& user2);
+    std::set<std::string> bfs(const std::string& startUser) const;
 
-    // Realizar BFS y devolver un conjunto de amigos
-    std::unordered_set<std::string> bfs(const std::string& startUser);
+private:
+    std::unordered_map<std::string, std::set<std::string>> adjList;
 };
 
-#endif // GRAPH_H
+#endif
