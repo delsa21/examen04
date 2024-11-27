@@ -17,7 +17,7 @@ void menu() {
     std::string user1, user2, category, content;
 
     do {
-        Menu();
+        menu();
         std::cin >> choice;
 
         switch (choice) {
