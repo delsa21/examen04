@@ -1,79 +1,65 @@
-#include "Menu.h"
-#include <iostream>
 #include "RecommendationSystem.h"
+#include <iostream>
+#include <string>
 
-void Menu::showMenu() {
-    int choice = -1;
+void displayMenu() {
+    std::cout << "1. Add User\n"
+              << "2. Add Friend\n"
+              << "3. Add Interest\n"
+              << "4. Add Content\n"
+              << "5. Get Recommendations\n"
+              << "6. Exit\n";
+}
 
-    RecommendationSystem recommendationSystem;
+void menu() {
+    RecommendationSystem system;
+    int choice;
+    std::string user1, user2, category, content;
 
-    while (choice != 0) {
-        std::cout << "\nMenú Principal:\n";
-        std::cout << "1. Agregar usuario\n";
-        std::cout << "2. Agregar interés\n";
-        std::cout << "3. Agregar contenido\n";
-        std::cout << "4. Crear conexión de amistad\n";
-        std::cout << "5. Ver recomendaciones\n";
-        std::cout << "0. Salir\n";
-        std::cout << "Elige una opción: ";
+    do {
+        displayMenu();
         std::cin >> choice;
 
         switch (choice) {
-        case 1: {
-            std::string username;
-            std::cout << "Introduce el nombre del usuario: ";
-            std::cin >> username;
-            recommendationSystem.addUser(username);
-            std::cout << "Usuario agregado.\n";
-            break;
-        }
-        case 2: {
-            std::string username, interest;
-            std::cout << "Introduce el nombre del usuario: ";
-            std::cin >> username;
-            std::cout << "Introduce el interés: ";
-            std::cin >> interest;
-            recommendationSystem.addInterest(username, interest);
-            std::cout << "Interés agregado.\n";
-            break;
-        }
-        case 3: {
-            std::string category, content;
-            std::cout << "Introduce la categoría: ";
-            std::cin >> category;
-            std::cout << "Introduce el contenido: ";
-            std::cin.ignore();
-            std::getline(std::cin, content);
-            recommendationSystem.addContent(category, content);
-            std::cout << "Contenido agregado.\n";
-            break;
-        }
-        case 4: {
-            std::string user1, user2;
-            std::cout << "Introduce el primer usuario: ";
+        case 1:
+            std::cout << "Enter username: ";
             std::cin >> user1;
-            std::cout << "Introduce el segundo usuario: ";
-            std::cin >> user2;
-            recommendationSystem.addFriend(user1, user2);
-            std::cout << "Amistad creada.\n";
+            system.addUser(user1);
             break;
-        }
-        case 5: {
-            std::string username;
-            std::cout << "Introduce el nombre del usuario: ";
-            std::cin >> username;
-            auto recommendations = recommendationSystem.recommendContent(username);
-            std::cout << "Recomendaciones:\n";
-            for (const auto& rec : recommendations) {
-                std::cout << "- " << rec << "\n";
+
+        case 2:
+            std::cout << "Enter two usernames to connect: ";
+            std::cin >> user1 >> user2;
+            system.addFriend(user1, user2);
+            break;
+
+        case 3:
+            std::cout << "Enter username and interest category: ";
+            std::cin >> user1 >> category;
+            system.addInterest(user1, category);
+            break;
+
+        case 4:
+            std::cout << "Enter category and content: ";
+            std::cin >> category >> content;
+            system.addContent(category, content);
+            break;
+
+        case 5:
+            std::cout << "Enter username to get recommendations: ";
+            std::cin >> user1;
+            for (const auto& rec : system.recommendContent(user1)) {
+                std::cout << rec << std::endl;
             }
             break;
-        }
-        case 0:
-            std::cout << "Saliendo...\n";
+
+        case 6:
+            std::cout << "Exiting...\n";
             break;
+
         default:
-            std::cout << "Opción inválida.\n";
+            std::cout << "Invalid option. Try again.\n";
+            break;
         }
-    }
+    } while (choice != 6);
 }
