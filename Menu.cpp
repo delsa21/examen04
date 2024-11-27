@@ -17,14 +17,14 @@ void menu() {
     std::string user1, user2, category, content;
 
     do {
-        displayMenu();
+        Menu();
         std::cin >> choice;
 
         switch (choice) {
         case 1:
             std::cout << "Ingresar Usuario: ";
             std::cin >> user1;
-            system.addUser(user1);
+            system.añadirUsuario(user1);
             break;
 
         case 2:
