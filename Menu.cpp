@@ -24,7 +24,7 @@ void menu() {
         case 1:
             std::cout << "Ingresar Usuario: ";
             std::cin >> user1;
-            system.añadirUsuario(user1);
+            system.addUsuario(user1);
             break;
 
         case 2:
