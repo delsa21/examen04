@@ -1,25 +1,17 @@
-#ifndef CONTENTMANAGER_H
-#define CONTENTMANAGER_H
+#ifndef CONTENT_MANAGER_H
+#define CONTENT_MANAGER_H
 
-#include <string>
 #include <unordered_map>
-#include <unordered_set>
-#include <vector>
+#include <set>
+#include <string>
 
 class ContentManager {
 public:
-    // Constructor
-    ContentManager();
-
-    // Método para agregar contenido a una categoría
     void addContent(const std::string& category, const std::string& content);
-
-    // Método para obtener los contenidos de una categoría
-    std::vector<std::string> getContentByCategory(const std::string& category) const;
+    std::set<std::string> getContentByCategory(const std::string& category) const;
 
 private:
-    // Mapa que asocia cada categoría con un conjunto de contenidos
-    std::unordered_map<std::string, std::unordered_set<std::string>> categoryMap;
+    std::unordered_map<std::string, std::set<std::string>> contents;
 };
 
-#endif // CONTENTMANAGER_H
+#endif
