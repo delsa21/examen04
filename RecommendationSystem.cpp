@@ -34,3 +34,6 @@ std::vector<std::string> RecommendationSystem::recommendContent(const std::strin
 
     return recommendations;
 }
+
+// g++ -o RecommendationSystem ContentManager.cpp UserManager.cpp Graph.cpp RecommendationSystem.cpp main.cpp
+// ./RecommendationSystem
