@@ -1,7 +1,7 @@
 #include "RecommendationSystem.h"
 
-void RecommendationSystem::añadirUsuario(const std::string& username) {
-    userManager.añadirUsuario(username);
+void RecommendationSystem::addUsuario(const std::string& username) {
+    userManager.addUsuario(username);
     graph.addEdge(username, username); // Ensure the user exists in the graph
 }
 
