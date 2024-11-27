@@ -6,9 +6,9 @@ void displayMenu() {
     std::cout << "1. Add User\n"
               << "2. Add Friend\n"
               << "3. Add Interest\n"
-              << "4. Add Content\n"
-              << "5. Get Recommendations\n"
-              << "6. Exit\n";
+              << "4. Agregar contenido\n"
+              << "5. Conseguir Recomendaciones\n"
+              << "6. Salir\n";
 }
 
 void menu() {
