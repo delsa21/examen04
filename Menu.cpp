@@ -54,11 +54,11 @@ void menu() {
             break;
 
         case 6:
-            std::cout << "Exiting...\n";
+            std::cout << "Saliendo...\n";
             break;
 
         default:
-            std::cout << "Invalid option. Try again.\n";
+            std::cout << "Opción Invalida, intenta de nuevo.\n";
             break;
         }
     } while (choice != 6);
