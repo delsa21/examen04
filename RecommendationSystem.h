@@ -11,7 +11,7 @@
 
 class RecommendationSystem {
 public:
-    void añadirUsuario(const std::string& username);
+    void addUsuario(const std::string& username);
     void addContent(const std::string& category, const std::string& content);
     void addFriend(const std::string& user1, const std::string& user2);
     void addInterest(const std::string& username, const std::string& category);
