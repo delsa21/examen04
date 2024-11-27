@@ -1,40 +1,37 @@
 #include "RecommendationSystem.h"
 
-// Delegar a UserManager
 void RecommendationSystem::addUser(const std::string& username) {
     userManager.addUser(username);
+    graph.addEdge(username, username); // Ensure the user exists in the graph
 }
 
-void RecommendationSystem::addInterest(const std::string& username, const std::string& interest) {
-    userManager.addInterest(username, interest);
-}
-
-// Delegar a ContentManager
 void RecommendationSystem::addContent(const std::string& category, const std::string& content) {
     contentManager.addContent(category, content);
 }
 
-// Delegar a Graph
 void RecommendationSystem::addFriend(const std::string& user1, const std::string& user2) {
     graph.addEdge(user1, user2);
 }
 
-// Lógica de recomendaciones (combinando intereses y conexiones)
-std::vector<std::string> RecommendationSystem::recommendContent(const std::string& username) {
-    // Obtener los amigos del usuario
-    auto friends = graph.bfs(username);
+void RecommendationSystem::addInterest(const std::string& username, const std::string& category) {
+    userManager.addInterest(username, category);
+}
 
-    // Acumular los intereses de los amigos
-    std::unordered_set<std::string> recommendedInterests;
-    for (const auto& friendName : friends) {
-        try {
-            auto interests = userManager.getInterests(friendName);
-            recommendedInterests.insert(interests.begin(), interests.end());
-        } catch (...) {
-            // Ignorar usuarios sin intereses
-        }
+std::vector<std::string> RecommendationSystem::recommendContent(const std::string& username) {
+    std::set<std::string> friends = graph.bfs(username);
+    std::set<std::string> allInterests;
+
+    for (const auto& friendUser : friends) {
+        std::set<std::string> interests = userManager.getInterests(friendUser);
+        allInterests.insert(interests.begin(), interests.end());
     }
 
-    // Convertir a vector y devolver
-    return std::vector<std::string>(recommendedInterests.begin(), recommendedInterests.end());
+    std::vector<std::string> recommendations;
+    for (const auto& interest : allInterests) {
+        std::set<std::string> content = contentManager.getContentByCategory(interest);
+        recommendations.insert(recommendations.end(), content.begin(), content.end());
+    }
+
+    return recommendations;
 }
+
