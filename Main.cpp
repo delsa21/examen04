@@ -24,7 +24,45 @@ int main() {
 
     return 0;
 }
+//--------------------------------------------------------------------------------------------------------------------
+#include "UserManager.h"
+#include <iostream>
 
+int main() {
+    UserManager um;
+
+    // Agregar usuarios
+    um.addUser("alice");
+    um.addUser("bob");
+
+    // Agregar intereses
+    um.addInterest("alice", "movies");
+    um.addInterest("alice", "music");
+    um.addInterest("bob", "sports");
+
+    // Obtener intereses
+    try {
+        auto aliceInterests = um.getInterests("alice");
+        std::cout << "Intereses de Alice: ";
+        for (const auto& interest : aliceInterests) {
+            std::cout << interest << " ";
+        }
+        std::cout << std::endl;
+
+        auto bobInterests = um.getInterests("bob");
+        std::cout << "Intereses de Bob: ";
+        for (const auto& interest : bobInterests) {
+            std::cout << interest << " ";
+        }
+        std::cout << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+
+    return 0;
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
 #include "Menu.cpp"
 
 int main() {
@@ -32,6 +70,7 @@ int main() {
     menu.showMenu();
     return 0;
 }
+//-----------------------------------------------------------------------------------------------------------------------------
 #include <iostream>
 #include "Graph.h"
 //Graph
