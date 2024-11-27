@@ -3,12 +3,12 @@
 #include <string>
 
 void displayMenu() {
-    std::cout << "1. Add User\n"
-              << "2. Add Friend\n"
-              << "3. Add Interest\n"
-              << "4. Add Content\n"
-              << "5. Get Recommendations\n"
-              << "6. Exit\n";
+    std::cout << "1. Crear Usuario\n"
+              << "2. Añadir Amistad\n"
+              << "3. Añadir Intereses\n"
+              << "4. Agregar contenido\n"
+              << "5. Conseguir Recomendaciones\n"
+              << "6. Salir\n";
 }
 
 void menu() {
@@ -17,36 +17,36 @@ void menu() {
     std::string user1, user2, category, content;
 
     do {
-        displayMenu();
+        Menu();
         std::cin >> choice;
 
         switch (choice) {
         case 1:
-            std::cout << "Enter username: ";
+            std::cout << "Ingresar Usuario: ";
             std::cin >> user1;
-            system.addUser(user1);
+            system.addUsuario(user1);
             break;
 
         case 2:
-            std::cout << "Enter two usernames to connect: ";
+            std::cout << "Escribir usuarios que quieran crear amistad: ";
             std::cin >> user1 >> user2;
             system.addFriend(user1, user2);
             break;
 
         case 3:
-            std::cout << "Enter username and interest category: ";
+            std::cout << "Ingresa usario y categoría del interés: ";
             std::cin >> user1 >> category;
             system.addInterest(user1, category);
             break;
 
         case 4:
-            std::cout << "Enter category and content: ";
+            std::cout << "Ingresa categoría y contenido: ";
             std::cin >> category >> content;
             system.addContent(category, content);
             break;
 
         case 5:
-            std::cout << "Enter username to get recommendations: ";
+            std::cout << "Ingresa usuario para conseguir recomendaciones: ";
             std::cin >> user1;
             for (const auto& rec : system.recommendContent(user1)) {
                 std::cout << rec << std::endl;
@@ -54,11 +54,11 @@ void menu() {
             break;
 
         case 6:
-            std::cout << "Exiting...\n";
+            std::cout << "Saliendo...\n";
             break;
 
         default:
-            std::cout << "Invalid option. Try again.\n";
+            std::cout << "Opción Invalida, intenta de nuevo.\n";
             break;
         }
     } while (choice != 6);
