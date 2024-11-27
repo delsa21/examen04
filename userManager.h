@@ -7,7 +7,7 @@
 
 class UserManager {
 public:
-    void añadirUsuario(const std::string& username);
+    void addUsuario(const std::string& username);
     void addInterest(const std::string& username, const std::string& category);
     std::set<std::string> getInterests(const std::string& username) const;
 
