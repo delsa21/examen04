@@ -1,6 +1,6 @@
-#include "Menu.cpp"
+#include "Menu.h"
 
 int main() {
-    menu();
+    menu(); 
     return 0;
 }
