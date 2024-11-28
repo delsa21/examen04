@@ -18,7 +18,7 @@ public:
     
     std::vector<std::string> recommendContent(const std::string& username);
 
-    // Nuevos métodos
+    
     std::set<std::string> getUserInterests(const std::string& username) const;
     std::set<std::string> getUserFriends(const std::string& username) const;
 
