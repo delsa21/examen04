@@ -4,20 +4,20 @@
 
 void displayMenu() {
     std::cout << "1. Crear Usuario\n"
-              << "2. Añadir Amistad\n"
-              << "3. Añadir Intereses\n"
+              << "2. Anadir Amistad\n"
+              << "3. Anadir Intereses\n"
               << "4. Agregar contenido\n"
               << "5. Conseguir Recomendaciones\n"
               << "6. Salir\n";
 }
 
-void menu() {
+void menu() { //a
     RecommendationSystem system;
     int choice;
     std::string user1, user2, category, content;
 
     do {
-        menu();
+        displayMenu();  // Solo llamamos a displayMenu() una vez por ciclo
         std::cin >> choice;
 
         switch (choice) {
@@ -34,7 +34,7 @@ void menu() {
             break;
 
         case 3:
-            std::cout << "Ingresa usario y categoría del interés: ";
+            std::cout << "Ingresa usuario y categoría del interés: ";
             std::cin >> user1 >> category;
             system.addInterest(user1, category);
             break;
@@ -61,5 +61,5 @@ void menu() {
             std::cout << "Opción Invalida, intenta de nuevo.\n";
             break;
         }
-    } while (choice != 6);
+    } while (choice != 6);  
 }
