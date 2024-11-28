@@ -34,3 +34,13 @@ std::vector<std::string> RecommendationSystem::recommendContent(const std::strin
 
     return recommendations;
 }
+
+// Implementación de los nuevos métodos
+
+std::set<std::string> RecommendationSystem::getUserInterests(const std::string& username) const {
+    return userManager.getInterests(username);
+}
+
+std::set<std::string> RecommendationSystem::getUserFriends(const std::string& username) const {
+    return graph.bfs(username); // BFS devuelve los amigos de un usuario
+}
