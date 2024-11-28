@@ -1,6 +1,6 @@
 # examen04
 
-#Task 1
+Task 1
 Implementación:
 Descripción: Crear una clase que gestione el contenido disponible en el sistema, agrupado por categorías. Debe permitir agregar contenido a una categoría y recuperar el contenido según la categoría solicitada.
 Crear la clase ContentManager con un unordered_map que mapea cada categoría a un conjunto de contenidos.
