@@ -2,8 +2,7 @@
 
 void RecommendationSystem::addUser(const std::string& username) {
     userManager.addUser(username);
-    graph.addEdge(username, username); // Ensure the user exists in the graph
-}
+    graph.addEdge(username, username); 
 
 void RecommendationSystem::addContent(const std::string& category, const std::string& content) {
     contentManager.addContent(category, content);
@@ -35,7 +34,7 @@ std::vector<std::string> RecommendationSystem::recommendContent(const std::strin
     return recommendations;
 }
 
-// Implementación de los nuevos métodos
+
 
 std::set<std::string> RecommendationSystem::getUserInterests(const std::string& username) const {
     return userManager.getInterests(username);
