@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-void displayMenu() {
+void displayMenu() { //Se agregan las opciones que se le desplegarán al usuario
     std::cout << "1. Agregar Usuario\n"
               << "2. Agregar Amigo\n"
               << "3. Agregar Interes\n"
