@@ -1,4 +1,5 @@
 #include "Graph.h"
+#include <queue>
 
 void Graph::addEdge(const std::string& user1, const std::string& user2) {
     adjList[user1].insert(user2);

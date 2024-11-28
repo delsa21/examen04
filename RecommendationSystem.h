@@ -4,7 +4,6 @@
 #include "UserManager.h"
 #include "ContentManager.h"
 #include "Graph.h"
-
 #include <set>
 #include <string>
 #include <vector>
@@ -17,7 +16,6 @@ public:
     void addInterest(const std::string& username, const std::string& category);
     std::vector<std::string> recommendContent(const std::string& username);
 
-private:
     UserManager userManager;
     ContentManager contentManager;
     Graph graph;

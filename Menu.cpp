@@ -1,65 +1,33 @@
-#include "RecommendationSystem.h"
+#include "Menu.h"
 #include <iostream>
-#include <string>
 
-void displayMenu() {
-    std::cout << "1. Crear Usuario\n"
-              << "2. Anadir Amistad\n"
-              << "3. Anadir Intereses\n"
-              << "4. Agregar contenido\n"
-              << "5. Conseguir Recomendaciones\n"
-              << "6. Salir\n";
+void Menu::mostrarMenuPrincipal() {
+    std::cout << "==================================" << std::endl;
+    std::cout << "         MENU PRINCIPAL          " << std::endl;
+    std::cout << "==================================" << std::endl;
+    std::cout << "1. Agregar Anime" << std::endl;
+    std::cout << "2. Mostrar Animes" << std::endl;
+    std::cout << "3. Buscar Anime por Género" << std::endl;
+    std::cout << "4. Ordenar Animes por Rating" << std::endl;
+    std::cout << "5. Salir" << std::endl;
+    std::cout << "Ingrese una opción (1-5): ";
 }
 
-void menu() { //a
-    RecommendationSystem system;
-    int choice;
-    std::string user1, user2, category, content;
+void Menu::mostrarMenuOrdenar() {
+    std::cout << "==================================" << std::endl;
+    std::cout << "       MENÚ DE ORDENAMIENTO      " << std::endl;
+    std::cout << "==================================" << std::endl;
+    std::cout << "1. Bubble Sort" << std::endl;
+    std::cout << "2. Merge Sort" << std::endl;
+    std::cout << "3. Quick Sort" << std::endl;
+    std::cout << "Ingrese el método de ordenamiento (1-3): ";
+}
 
-    do {
-        displayMenu();  
-        std::cin >> choice;
+void Menu::mostrarMensajeBienvenida() {
+    std::cout << "¡Bienvenido a la aplicación de Anime!" << std::endl;
+    std::cout << "Aquí podrás gestionar y buscar tus animes favoritos." << std::endl;
+}
 
-        switch (choice) {
-        case 1:
-            std::cout << "Ingresar Usuario: ";
-            std::cin >> user1;
-            system.addUsuario(user1);
-            break;
-
-        case 2:
-            std::cout << "Escribir usuarios que quieran crear amistad: ";
-            std::cin >> user1 >> user2;
-            system.addFriend(user1, user2);
-            break;
-
-        case 3:
-            std::cout << "Ingresa usuario y categoría del interés: ";
-            std::cin >> user1 >> category;
-            system.addInterest(user1, category);
-            break;
-
-        case 4:
-            std::cout << "Ingresa categoría y contenido: ";
-            std::cin >> category >> content;
-            system.addContent(category, content);
-            break;
-
-        case 5:
-            std::cout << "Ingresa usuario para conseguir recomendaciones: ";
-            std::cin >> user1;
-            for (const auto& rec : system.recommendContent(user1)) {
-                std::cout << rec << std::endl;
-            }
-            break;
-
-        case 6:
-            std::cout << "Saliendo...\n";
-            break;
-
-        default:
-            std::cout << "Opción Invalida, intenta de nuevo.\n";
-            break;
-        }
-    } while (choice != 6);  
+void Menu::mostrarMensajeDespedida() {
+    std::cout << "Gracias por usar la aplicación de Anime. ¡Hasta luego!" << std::endl;
 }
