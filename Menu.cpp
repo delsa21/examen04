@@ -17,7 +17,7 @@ void menu() { //a
     std::string user1, user2, category, content;
 
     do {
-        displayMenu();  // Solo llamamos a displayMenu() una vez por ciclo
+        displayMenu();  
         std::cin >> choice;
 
         switch (choice) {
